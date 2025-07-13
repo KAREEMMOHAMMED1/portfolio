@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kareem Mourad - Video Editor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-red: #ff0000;
+      --dark-bg: #1a1a1a;
+      --text-color: #fff;
+      --max-width: 1200px;
+      --card-radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #000;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--main-red);
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px var(--main-red);
+    }
+
+    header p {
+      font-size: 1.1rem;
+      text-shadow: 0 0 5px var(--main-red);
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: var(--max-width);
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--main-red);
+      text-shadow: 0 0 8px var(--main-red);
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      background-color: var(--main-red);
+      border-radius: var(--card-radius);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px var(--main-red);
+    }
+
+    .portfolio .grid iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      border-radius: var(--card-radius);
+      background-color: #000;
+      padding: 5px;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .portfolio .grid iframe:hover {
+      box-shadow: 0 0 24px rgba(255, 0, 0, 0.6);
+      transform: scale(1.03);
+    }
+
+    .reels-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .reel-card {
+      background-color: #000;
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      aspect-ratio: 9 / 16;
+    }
+
+    .reel-card iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: var(--card-radius);
+      display: block;
+    }
+
+    .reel-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 24px rgba(255, 0, 0, 0.6);
+    }
+
+    .video-title {
+      background-color: var(--main-red);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      border-radius: var(--card-radius);
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      background-color: #000;
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid var(--main-red);
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-links a:hover {
+      background-color: var(--main-red);
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--main-red);
+    }
+
+    .contact-links img {
+      width: 20px;
+      height: 20px;
+    }
+
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 20px;
+      color: var(--text-color);
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Kareem Mourad - Video Editor</h1>
+    <p>Viral Edits | Clean Cuts | Eye-Catching Content</p>
+  </header>
+
+  <section class="skills">
+    <h2>Skills</h2>
+    <div class="grid">
+      <div class="card">Adobe Premiere</div>
+      <div class="card">After Effects</div>
+      <div class="card">Photoshop</div>
+      <div class="card">Motion Graphics</div>
+    </div>
+  </section>
+
+  <section class="portfolio">
+    <h2>My Work</h2>
+    <div class="grid">
+      <div>
+        <iframe src="https://player.vimeo.com/video/1101017374" allowfullscreen></iframe>
+        <div class="video-title">Promo Video for Client X</div>
+      </div>
+      <div>
+        <iframe src="https://player.vimeo.com/video/1101017247" allowfullscreen></iframe>
+        <div class="video-title">YouTube Intro Animation</div>
+      </div>
+      <div>
+        <iframe src="https://player.vimeo.com/video/333333333" allowfullscreen></iframe>
+        <div class="video-title">Corporate Event Recap</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reels">
+    <h2>Reels</h2>
+    <div class="reels-container">
+      <div class="reel-card">
+        <iframe src="https://player.vimeo.com/video/1101010197" allowfullscreen></iframe>
+        <div class="video-title">Promo Video for Client X</div>
+      </div>
+      <div class="reel-card">
+        <iframe src="https://player.vimeo.com/video/1101012379" allowfullscreen></iframe>
+        <div class="video-title">Instagram Reel #2</div>
+      </div>
+      <div class="reel-card">
+        <iframe src="https://player.vimeo.com/video/1101019782" allowfullscreen></iframe>
+        <div class="video-title">Instagram Reel #3</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-links">
+      <a href="https://wa.me/201021128827" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Icon"> WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 All Rights Reserved</p>
+  </footer>
+</body>
+</html>
