@@ -14,6 +14,10 @@
       --card-radius: 16px;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -27,6 +31,60 @@
       line-height: 1.6;
     }
 
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .parallax-bg {
+      background: linear-gradient(to right, #0f0f0f, #1a1a1a);
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .divider {
+      height: 60px;
+      background: linear-gradient(to right, red, black, red);
+      opacity: 0.2;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      background-color: #000;
+      padding: 10px 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(255, 0, 0, 0.2);
+    }
+
+    .navbar ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 40px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.3s, border-bottom 0.3s;
+    }
+
+    .navbar a:hover {
+      color: var(--main-red);
+      border-bottom: 2px solid var(--main-red);
+    }
+
     header {
       background-color: #000;
       text-align: center;
@@ -38,6 +96,12 @@
       color: var(--main-red);
       margin-bottom: 10px;
       text-shadow: 0 0 10px var(--main-red);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+      50% { text-shadow: 0 0 20px rgba(255, 0, 0, 1); }
     }
 
     header p {
@@ -46,7 +110,7 @@
     }
 
     section {
-      padding: 40px 20px;
+      padding: 60px 20px;
       max-width: var(--max-width);
       margin: auto;
     }
@@ -65,34 +129,33 @@
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 
-    .card {
-      background-color: var(--main-red);
-      border-radius: var(--card-radius);
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px var(--main-red);
-    }
-
+    
     .portfolio .grid iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: none;
-      border-radius: var(--card-radius);
-      background-color: #000;
-      padding: 5px;
-      box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-      transition: box-shadow 0.4s ease, transform 0.4s ease;
-    }
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          border: none;
+          border-radius: var(--card-radius);
+          background-color: #000;
+          padding: 5px;
+          box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+          transition: box-shadow 0.4s ease, transform 0.4s ease;
+        }
 
-    .portfolio .grid iframe:hover {
-      box-shadow: 0 0 24px rgba(255, 0, 0, 0.6);
+        .reel-card iframe {
+          width: 100%;
+          height: 100%;
+          aspect-ratio: 9 / 16;
+          object-fit: cover;
+          border: none;
+          border-radius: var(--card-radius);
+          display: block;
+        }
+
+
+    .portfolio .grid iframe:hover,
+    .reel-card:hover {
       transform: scale(1.03);
+      box-shadow: 0 0 24px rgba(255, 0, 0, 0.6);
     }
 
     .reels-container {
@@ -110,19 +173,6 @@
       aspect-ratio: 9 / 16;
     }
 
-    .reel-card iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: var(--card-radius);
-      display: block;
-    }
-
-    .reel-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 24px rgba(255, 0, 0, 0.6);
-    }
-
     .video-title {
       background-color: var(--main-red);
       color: white;
@@ -133,6 +183,36 @@
       font-weight: bold;
       font-size: 1rem;
       box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
+
+    .skills-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .skill-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+      transition: transform 0.3s;
+    }
+
+    .skill-icon:hover {
+      transform: scale(1.1) rotate(3deg);
+    }
+
+    .skill-icon img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+      filter: brightness(1.2);
     }
 
     .contact-links {
@@ -177,53 +257,44 @@
       margin-top: 40px;
       font-size: 0.9rem;
     }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-
-      section h2 {
-        font-size: 1.5rem;
-      }
-    }
   </style>
 </head>
 <body>
-  <header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="#mywork">My Work</a></li>
+      <li><a href="#reels">Reels</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="parallax-bg">
     <h1>Kareem Mourad - Video Editor</h1>
     <p>Viral Edits | Clean Cuts | Eye-Catching Content</p>
   </header>
 
-  <section class="skills">
-    <h2>Skills</h2>
-    <div class="grid">
-      <div class="card">Adobe Premiere</div>
-      <div class="card">After Effects</div>
-      <div class="card">Photoshop</div>
-      <div class="card">Motion Graphics</div>
-    </div>
-  </section>
-
-  <section class="portfolio">
-    <h2>My Work</h2>
+  <section class="portfolio reveal" id="mywork">
+    <h2>Long videos</h2>
     <div class="grid">
       <div>
         <iframe src="https://player.vimeo.com/video/1101017374" allowfullscreen></iframe>
-        <div class="video-title">Promo Video for Client X</div>
+        <div class="video-title">YouTube Intro</div>
       </div>
       <div>
         <iframe src="https://player.vimeo.com/video/1101017247" allowfullscreen></iframe>
-        <div class="video-title">YouTube Intro Animation</div>
+        <div class="video-title">YouTube Intro</div>
       </div>
       <div>
-        <iframe src="https://player.vimeo.com/video/333333333" allowfullscreen></iframe>
-        <div class="video-title">Corporate Event Recap</div>
+        <iframe src="https://player.vimeo.com/video/1105413037" allowfullscreen></iframe>
+        <div class="video-title">YouTube Intro</div>
       </div>
     </div>
   </section>
 
-  <section class="reels">
+  <div class="divider"></div>
+
+  <section class="reels reveal" id="reels">
     <h2>Reels</h2>
     <div class="reels-container">
       <div class="reel-card">
@@ -237,14 +308,61 @@
       <div class="reel-card">
         <iframe src="https://player.vimeo.com/video/1101019782" allowfullscreen></iframe>
         
-      </div> <div class="reel-card">
-        <iframe src="https://player.vimeo.com/video/1101020275" allowfullscreen></iframe>
+      </div>
+         <div class="reel-card">
+          <iframe src="https://player.vimeo.com/video/1101020275" allowfullscreen></iframe>
         </div>
-     
-     
+
+       </div>
+    </div>
+  </section>
   </section>
 
-  <section class="contact">
+<!-- قسم Teacher الجديد -->
+<section class="reels reveal" id="teacher">
+  <h2>Pro Edits for Teachers</h2>
+  <div class="reels-container">
+    <div class="reel-card">
+      <iframe src="https://player.vimeo.com/video/1102785549" allowfullscreen></iframe>
+    </div>
+    <div class="reel-card">
+      <iframe src="https://player.vimeo.com/video/1102786532" allowfullscreen></iframe>
+    </div>
+    <div class="reel-card">
+      <iframe src="https://player.vimeo.com/video/1102788982" allowfullscreen></iframe>
+    </div>
+    <div class="reel-card">
+      <iframe src="https://player.vimeo.com/video/1102788245" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+  <div class="divider"></div>
+
+
+  <section class="skills reveal" id="skills">
+    <h2>Skills</h2>
+    <div class="skills-icons">
+      <div class="skill-icon">
+        <img src="https://img.icons8.com/color/96/adobe-premiere-pro.png" alt="Premiere">
+      </div>
+      <div class="skill-icon">
+        <img src="https://img.icons8.com/color/96/adobe-after-effects.png" alt="After Effects">
+      </div>
+      <div class="skill-icon">
+        <img src="https://img.icons8.com/color/96/adobe-photoshop.png" alt="Photoshop">
+      </div>
+      <div class="skill-icon">
+        <img src="https://img.icons8.com/color/96/adobe-illustrator.png" alt="Illustrator">
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="contact reveal" id="contact">
     <h2>Contact Me</h2>
     <div class="contact-links">
       <a href="https://wa.me/201021128827" target="_blank">
@@ -256,5 +374,21 @@
   <footer>
     <p>© 2025 All Rights Reserved</p>
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+  </script>
 </body>
 </html>
